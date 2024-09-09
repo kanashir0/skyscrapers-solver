@@ -1,0 +1,5 @@
+*.out
+*.dSYM
+*.h.gch
+skysc
+.vscode
