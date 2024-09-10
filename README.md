@@ -32,3 +32,81 @@ In our case the constrainsts are simple:
 * `Makefile`: This file is used to help compiling the code and I also created some make commands to help testing the code.
 
 ## Code explanation
+The main logic to solve the puzzle is inside the `src/choice.c` file, because here is where the code make "it's choice" of which number it will try to put in the board. 
+
+```c
+int     solve(int input_constraints[SIZE][SIZE], int board[SIZE][SIZE], int row, int col)
+{
+	int	num;
+
+	// Here we have our base cases, that means our conditions to know when we have filled
+	// each row, which is when we reach the last column of each row (If we reached the last
+	// column, it will try the next row in the first column). And when we have filled
+	// the whole board, which is we reached the last row (Then the answer was found).
+	if (row == SIZE)   // Satified the last row, answer found.
+		return (1);
+	if (col == SIZE)   // Satified the last column of the row, go to the next row and first column
+		return (solve(input_constraints, board, row + 1, 0) == 1);
+	
+	// Here the code will make it's choice, a number from 1 to 4 and will put it into the board
+	// and check if this choice will satisfy all constraints.
+	num = 1;
+	while (num <= SIZE)
+	{
+		board[row][col] = num;  // Insert the number into the board
+		// If the choice is valid (satisfies all constraints),
+		// it will now try to fill the next slot in the same row
+		if (is_valid_choice(input_constraints, board, row, col) == 1)
+		{
+			if (solve(input_constraints, board, row, col + 1) == 1)
+				return (1);
+		}
+		num++;
+	}
+	// If the code runs out of choice, no number satisfies the constraints, it will put zero (backtrack) into
+	// the board, and will return false to the previous choice made. 
+	board[row][col] = 0;
+	return (0);
+}
+```
+
+## Code execution
+### Choosing board size
+You can change the board size by modifying the variable `SIZE` inside the `include/values.h` header file, this code can easily solve boards from **4x4 to 6x6**, boards bigger than this can take a very long time to run.
+
+```c
+# define SIZE 4
+```
+
+The default value for the board is 4, it is already set in the code.
+
+### Compiling and testing
+To help compiling the code you can use the `Makefile` which have some commands to compile, clean and run the code. You can compile it by running:
+
+```sh
+make fclean
+make
+```
+
+The `fclean` command will remove all generated binaries if you already compiled the code before, because you cannot compile it with another generated binary with the same name inside the folder. Then the command `make` will compile the source code and will generate a binary called `skysc`.
+
+After this you can run the program by executing the `skysc` file and passing the constraints in the first argument.
+
+```sh
+./skysc "4 3 2 1 1 2 2 2 4 3 2 1 1 2 2 2"
+```
+
+The argument needs to be a string containing all numbers needed to solve the board, that means (board_size * 4) numbers. (e.g. 16 numbers for a 4x4 board)
+
+To help you test the program, I already set up some `make` commands for 4x4, 5x5 and 6x6 boards. You can use it by executing:
+
+```sh
+make run4
+make run5
+make run6
+```
+
+Just be aware to execute only the command that runs the test of the configured board size, if it's a 4x4 board, execute the `make run4` command.
+
+## Credits
+This project was only possible specially because of [this video](https://www.youtube.com/watch?v=Zq4upTEaQyM&ab_channel=BackToBackSWE), and many others from the [Back to Back SWE](https://www.youtube.com/@BackToBackSWE) youtube channel. Thank you so much!!
