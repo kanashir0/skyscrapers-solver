@@ -18,9 +18,12 @@ This is a logic-based game, where players fill in a grid with skyscrapers of var
 
 Note that it doesn't have **repeated** numbers in the same line or columns and all point of views are correctly **satisfied**.
 
-## The logic used to solve the problem
-TODO: write about the logic without code
+## The Backtracking Algorithmn
+To solve this puzzle it was used the [Backtracking algorithmn](https://en.wikipedia.org/wiki/Backtracking), it is a **recursive algorithm** used to solve constraint satisfaction problems, such as (Sudoku, Skyscrapers, Maze, etc.) or combinatorial problems, by exploring **all potential solutions** and abandoning solutions that violate the problem's constraints (known as backtracking). It systematically searches for a solution by attempting partial solutions and "backtracking" when a conflict or dead-end is encountered.
 
+In our case the constrainsts are simple:
+* Not repeating numbers in the same line or column;
+* Respecting the given numbers of point of views.
 
 ## Project Structure
 
