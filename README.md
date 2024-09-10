@@ -90,13 +90,17 @@ make
 
 The `fclean` command will remove all generated binaries if you already compiled the code before, because you cannot compile it with another generated binary with the same name inside the folder. Then the command `make` will compile the source code and will generate a binary called `skysc`.
 
-After this you can run the program by executing the `skysc` file and passing the constraints in the first argument.
+After this you can run the program by executing the `skysc` file and passing the constraint numbers in the first argument.
 
 ```sh
 ./skysc "4 3 2 1 1 2 2 2 4 3 2 1 1 2 2 2"
 ```
 
-The argument needs to be a string containing all numbers needed to solve the board, that means (board_size * 4) numbers. (e.g. 16 numbers for a 4x4 board)
+The argument needs to be a **string** containing all numbers needed to solve the board, that means **(board_size * 4) numbers**. (e.g. 16 numbers for a 4x4 board).
+
+The output should look like this:
+
+<img src="assets/how_to_execute.png" height=70% width=70%>
 
 To help you test the program, I already set up some `make` commands for 4x4, 5x5 and 6x6 boards. You can use it by executing:
 
