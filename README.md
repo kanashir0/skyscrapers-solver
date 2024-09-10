@@ -10,8 +10,13 @@ This is a logic-based game, where players fill in a grid with skyscrapers of var
 * The numbers along the edges of the grid indicate how many skyscrapers you can see from that direction. That means if you have a **1** in some edge, the skyscraper to be placed next to it is a **4 height skyscraper**, because the 1 means you can only see 1 skyscraper in this point of view. If you see a **4** in some edge that means you need to place the skyscrapers in ascending order in this line/column **(1, 2, 3, 4)**, because the 4 means you can see 4 skyscrapers from this point of view.
 * Each cell within the grid must contain a skyscraper of a **unique height** from 1 to N, where N is the size of the grid (e.g., in a 4x4 grid, each row and column will have skyscrapers with heights 1, 2, 3, and 4). And you **cannot** repeat a skyscraper of the same height in the same line or column.
 
-This is a sample board to help illustrate the setup.
+#### This is an empty board to help illustrate the initial setup.
 <img src="assets/empty_board.png" height=40% width=40%>
+
+#### This is the same board but filled with the correct answer.
+<img src="assets/solved_board.png" height=40% width=40%>
+
+Note that it doesn't have **repeated** numbers in the same line or columns and all point of views are correctly **satisfied**.
 
 ## The logic used to solve the problem
 TODO: write about the logic without code
